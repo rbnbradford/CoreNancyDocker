@@ -1,0 +1,115 @@
+{
+  "info": {
+    "_postman_id": "4fdf4521-df82-48a5-bbbd-8823f219d872",
+    "name": "nancy",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create duck",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "3d785a9f-bc29-4203-aefd-7d4caead3404",
+            "type": "text/javascript",
+            "exec": [
+              "var jsonData = JSON.parse(responseBody);",
+              "postman.setEnvironmentVariable(\"lastCreatedId\", jsonData[\"data\"][\"id\"]);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "bbf73c8f45cc46c993e682c4d5988d70"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/javascript"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"name\": \"florence\",\n\t\"age\" : 12\n}"
+        },
+        "url": {
+          "raw": "{{url}}/Ducks/",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "Ducks",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get all ducks",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "bbf73c8f45cc46c993e682c4d5988d70"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/javascript"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{url}}/Ducks/",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "Ducks",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get duck by id",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "bbf73c8f45cc46c993e682c4d5988d70"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/javascript"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{url}}/Duck/{{lastCreatedId}}",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "Duck",
+            "{{lastCreatedId}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
