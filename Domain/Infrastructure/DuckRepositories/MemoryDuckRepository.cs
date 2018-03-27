@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using Domain.Domain;
-using Domain.Infrastructure.Dtos;
-using Domain.Infrastructure.Dtos.Conversion;
+using Domain.Infrastructure.Conversion;
+using Domain.Records;
 
-namespace Domain.Infrastructure
+namespace Domain.Infrastructure.DuckRepositories
 {
     public class MemoryDuckRepository : IDuckRepository
     {
         private readonly Dictionary<string, DuckRecord> _duckDictionary;
-        private readonly IConverter<DuckRecord, Duck> _converter;
+        private readonly IConverter<Duck, DuckRecord> _converter;
 
         public MemoryDuckRepository(Dictionary<string, DuckRecord> duckDictionary)
         {

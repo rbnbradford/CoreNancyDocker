@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Domain.Infrastructure
+namespace Domain.Infrastructure.DuckRepositories
 {
     public class NoDuckWithIdException : Exception
     {

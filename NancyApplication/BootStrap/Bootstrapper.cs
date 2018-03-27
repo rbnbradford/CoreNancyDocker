@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
-using Domain.Domain;
-using Domain.Infrastructure;
-using Domain.Infrastructure.Dtos;
-using Domain.Representation;
+﻿using System;
+using System.Reflection;
 using Nancy;
-using Nancy.Bootstrapper;
 using Nancy.Configuration;
 using Nancy.TinyIoc;
+using NancyApplication.Containers;
 
 namespace NancyApplication.BootStrap
 {
@@ -17,17 +14,26 @@ namespace NancyApplication.BootStrap
             environment.Tracing(true, true);
         }
 
-        protected override void RegisterInstances(TinyIoCContainer container,
-            IEnumerable<InstanceRegistration> instanceRegistrations)
+        protected override void ConfigureApplicationContainer(TinyIoCContainer container)
         {
-            base.RegisterInstances(container, instanceRegistrations);
+            base.ConfigureApplicationContainer(container);
+            ConfigurationNamed(DetermineContainerName()).Configure(container);
+        }
 
-            container.Register(new Dictionary<string, DuckRecord>());
+        private static string DetermineContainerName()
+        {
+            return $"Containers.{Environment.GetEnvironmentVariable("CONTAINER") ?? "Develop"}";
+        }
 
-            container.Register<IDuckRepository, MemoryDuckRepository>()
-                .AsSingleton();
-            container.Register<IDuckReadRepository, MemoryDuckReadRepository>()
-                .AsSingleton();
+        private static IContainerConfiguration ConfigurationNamed(
+            string containerConfigurationClassName,
+            string assemblyName = null
+        )
+        {
+            assemblyName = assemblyName ?? Assembly.GetCallingAssembly().GetName().Name;
+            var name = $"{assemblyName}.{containerConfigurationClassName}";
+            var type = Type.GetType($"{name}, {assemblyName}", false) ?? throw new NoSuchContainerConfiguration(name);
+            return Activator.CreateInstance(type) as IContainerConfiguration;
         }
     }
 }

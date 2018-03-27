@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Domain.Infrastructure.Dtos;
+using Domain.Records;
 
 namespace Domain.Representation
 {

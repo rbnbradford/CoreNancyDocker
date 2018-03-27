@@ -1,6 +1,6 @@
 ﻿using Domain.Domain;
 
-namespace Domain.Application
+namespace Domain.ApplicationServices
 {
     public class DuckService
     {

@@ -1,5 +1,6 @@
 ﻿using Domain.Representation;
 using Nancy;
+using NancyApplication.Extensions;
 using Newtonsoft.Json;
 
 namespace NancyApplication.Controllers
@@ -14,19 +15,25 @@ namespace NancyApplication.Controllers
 
             Get("/Duck/{id}", args => GetDuck(args));
 
-            Get("/Ducks/", args => GetDucks());
+            Get("/Ducks/", _ => GetDucks());
         }
 
         private Response GetDuck(dynamic args)
         {
-            return ((Response) JsonConvert.SerializeObject(_readRepository.Get((string) args.id)))
-                .WithContentType("application/json");
+            return JsonConvert
+                .SerializeObject(_readRepository.Get((string) args.id))
+                .AsResponse()
+                .WithContentType("application/json")
+                .WithStatusCode(200);
         }
 
         private Response GetDucks()
         {
-            return ((Response) JsonConvert.SerializeObject(_readRepository.Get()))
-                .WithContentType("application/json");
+            return JsonConvert
+                .SerializeObject(_readRepository.Get())
+                .AsResponse()
+                .WithContentType("application/json")
+                .WithStatusCode(200);
         }
     }
 }

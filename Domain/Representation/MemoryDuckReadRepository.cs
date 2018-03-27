@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Domain.Infrastructure;
-using Domain.Infrastructure.Dtos;
+using Domain.Infrastructure.DuckRepositories;
+using Domain.Records;
 
 namespace Domain.Representation
 {

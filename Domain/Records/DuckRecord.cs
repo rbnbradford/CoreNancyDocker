@@ -1,4 +1,4 @@
-﻿namespace Domain.Infrastructure.Dtos
+﻿namespace Domain.Records
 {
     public struct DuckRecord
     {

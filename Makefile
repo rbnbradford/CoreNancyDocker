@@ -4,7 +4,6 @@ DEFAULT_GOAL: init
 install-docker:
 	wget -qO- https://gist.githubusercontent.com/wdullaer/f1af16bd7e970389bad3/raw/23e196ac45c1f638323b66c3748bc376719fee91/install.sh | sh
 
-
 ## Installs dot net core
 dotnetcore:
 	curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
