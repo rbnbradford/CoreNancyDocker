@@ -6,7 +6,7 @@ Example web app using a dockerised .net core application and the Nancy framework
 - docker (https://docs.docker.com/engine/installation/)
 - docker-compose (compose https://docs.docker.com/compose/install/)
 
-##for local development 
+## For local development 
 - dotnet core (https://www.microsoft.com/net/learn/get-started/linuxubuntu)
 
 ## Install docker and docker compose
